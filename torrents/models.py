@@ -27,7 +27,7 @@ class Torrent(models.Model):
     title = models.CharField(max_length=128)
     description = models.TextField()
     added = models.DateTimeField(auto_now_add=True)
-    magnet_link = models.CharField(max_length=128, validators=[magnet_validator])
+    magnet_link = models.CharField(max_length=256, validators=[magnet_validator])
 
     def get_info(self):
         response = urllib.urlopen(get_scrape_url(get_info_hash(self.magnet_link)))
