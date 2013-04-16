@@ -22,7 +22,7 @@ DATABASES = {
     }
 }
 
-SITE_URL = 'localhost:8000'
+SITE_URL = 'http://torrent.gilgi.org/'
 SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
 
 # Local time zone for this installation. Choices can be found here:
