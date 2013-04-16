@@ -1,3 +1,10 @@
+/* custom padding on description p
+-------------------------------------------------- */
+.description {
+    padding-top: 10px;
+}
+
+
 /* narrow textfields
 -------------------------------------------------- */
 .narrow, .timepicker {
@@ -31,6 +38,13 @@ footer {
 h1 {
   padding-bottom: 10px;
 }
+
+/* Space above h2's
+-------------------------------------------------- */
+h2 {
+  padding-top: 10px;
+}
+
 
 /* Space out h3's a bit
 -------------------------------------------------- */
