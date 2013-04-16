@@ -26,6 +26,10 @@
     <td>{{ object.user }}</td>
   </tr>
   <tr>
+    <th>Added</th>
+    <td>{{ object.added|date:"Y-m-d H:i:s" }}</td>
+  </tr>
+  <tr>
     <th>Seeders</th>
     <td>{{ object.get_info.seeders }}</td>
   </tr>

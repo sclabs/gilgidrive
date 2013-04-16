@@ -11,6 +11,7 @@
   <tr>
     <th>Name</th>
     <th>Added By</th>
+    <th>Added</th>
     <th>Magnet Link</th>
     <th>Seeders</th>
     <th>Leechers</th>
@@ -20,6 +21,7 @@
   <tr>
     <td><a href="{% url 'torrent' pk=torrent.pk %}">{{ torrent.title }}</td>
     <td>{{ torrent.user.username }}</td>
+    <td>{{ torrent.added|date:"Y-m-d H:i:s" }}</td>
     <td><a class="btn btn-success btn-mini" href="{{ torrent.magnet_link }}">Download</a></td>
     <td>{{ torrent.get_info.seeders }}</td>
     <td>{{ torrent.get_info.leechers }}</td>
