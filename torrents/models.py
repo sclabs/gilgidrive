@@ -19,7 +19,7 @@ def get_info_hash(magnet_link):
     return magnet_link[20:60]
 
 def get_scrape_url(info_hash):
-    return 'http://tracker.gilgi.org:6969/scrape?info_hash=' + binascii.a2b_hex(info_hash)
+    return 'http://tracker.gilgi.org:6969/scrape?info_hash=' + urllib.quote_plus(binascii.a2b_hex(info_hash))
 
 class Torrent(models.Model):
     user = models.ForeignKey(User)
