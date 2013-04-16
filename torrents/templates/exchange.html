@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% load dictionary %}
+
+{% block title %}shk - exchange{% endblock %}
+
+{% block content %}
+
+<p>Exchange</p>
+
+<a href="{% url precreate %}">Create New Contract</a>
+
+<p>Available Contracts</p>
+
+{% if contracts %}
+<table border="1">
+  <tr>
+    <th>Offering</th>
+    <th>For</th>
+    <th>Accept</th>
+  </tr>
+  {% for contract in contracts %}
+  <tr>
+    <td>
+      <ul>
+        {% for bundle in sendBundles|lookup:contract.id %}
+        <li>{{ bundle.qty }} {{ bundle.type }}</li>
+        {% endfor %}
+      </ul>
+    </td>
+    <td>
+      <ul>
+        {% for bundle in receiveBundles|lookup:contract.id %}
+        <li>{{ bundle.qty }} {{ bundle.type }}</li>
+        {% endfor %}
+      </ul>
+    </td>
+    <td><a href="{% url accept contract.id %}">Accept Contract</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>There are currently no contracts available.</p>
+{% endif %}
+
+<p>My Contracts</p>
+
+{% if myContracts %}
+<table border="1">
+  <tr>
+    <th>Offering</th>
+    <th>For</th>
+    <th>Cancel</th>
+  </tr>
+  {% for contract in myContracts %}
+  <tr>
+    <td>
+      <ul>
+        {% for bundle in mySendBundles|lookup:contract.id %}
+        <li>{{ bundle.qty }} {{ bundle.type }}</li>
+        {% endfor %}
+      </ul>
+    </td>
+    <td>
+      <ul>
+        {% for bundle in myReceiveBundles|lookup:contract.id %}
+        <li>{{ bundle.qty }} {{ bundle.type }}</li>
+        {% endfor %}
+      </ul>
+    </td>
+    <td><a href="{% url cancel contract.id %}">Cancel Contract</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>You haven't issued any contracts.</p>
+{% endif %}
+
+{% endblock %}

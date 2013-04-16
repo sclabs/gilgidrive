@@ -1,0 +1,47 @@
+<!-- Le navbar
+================================================== -->
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="{% url 'recent' %}">gilgitorrent</a>
+      <div class="nav-collapse">
+        <ul class="nav">
+          <li class="{{ recent_active }}"><a href="{% url 'recent' %}">Recent</a></li>
+          <li class="dropdown {{ categories_active }}">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              {% for category in categories %}
+              <li class="{{ category.active }}"><a href="{% url 'category' name=category.name %}">{{ category.name }}</a></li>
+              {% endfor %}
+              <li class="divider"></li>
+              <li class="{{ all_active }}"><a href="{% url 'all' %}">All Torrents</a></li>
+            </ul>
+          </li>
+          <li class="{{ add_active }}"><a href="{% url 'add' %}">Add Torrent</a></li>
+          <li class="divider-vertical"></li>
+          <li class="{{ changelog_active }}"><a href="{% url 'changelog' %}">Changelog</a></li>
+        </ul>
+        <ul class="nav pull-right">
+          {% if user.is_authenticated %}
+          <li class="dropdown {{ account_active }}">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li class="{{ changepassword_active }}"><a href="{% url 'changepassword' %}">Change Password</a></li>
+              <li><a href="{% url 'switchuser' %}">Switch User</a></li>
+              <li class="divider"></li>
+              <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+          </li>
+          {% else %}
+          <li class="pull-right {{ account_active }}"><a href="{% url 'login' %}">Login</a></li>
+          {% endif %}
+        </ul>
+      </div><!-- /.nav-collapse -->
+    </div>
+  </div><!-- /navbar-inner -->
+</div><!-- /navbar -->

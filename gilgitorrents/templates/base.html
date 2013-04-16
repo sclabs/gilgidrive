@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>gilgitorrent - {% block title %}{% endblock %}</title>
+  {% include "includes/css.html" %}
+  {% include "includes/analytics.html" %}
+</head>
+<body>
+  {% include "includes/navbar.html" %}
+  <div class="container">
+    {% block content %}{% endblock %}
+    {% include "includes/footer.html" %}
+  </div>
+  {% include "includes/js.html"%}
+</body>
+</html>

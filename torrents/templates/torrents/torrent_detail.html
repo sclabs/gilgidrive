@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}{{ object.title|lower }}{% endblock %}
+
+{% block content %}
+
+<h1>{{ object.title }}
+{% if owned %}
+<small style="float:right;">
+<a class="btn btn-primary" href="{% url 'edit' pk=object.pk %}">Edit Torrent</a>
+</small>
+{% endif %}
+</h1>
+
+<a class="btn btn-success" href="{{ object.magnet_link }}">Download</a>
+
+<p>{{ object.description }}</p>
+
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Title</th>
+    <th>{{ object.title }}</th>
+  </tr>
+  <tr>
+    <th>Added By</th>
+    <td>{{ object.user }}</td>
+  </tr>
+  <tr>
+    <th>Seeders</th>
+    <td>{{ object.get_info.seeders }}</td>
+  </tr>
+  <tr>
+    <th>Leechers</th>
+    <td>{{ object.get_info.leechers }}</td>
+  </tr>
+  <tr>
+    <th>Downloads</th>
+    <td>{{ object.get_info.downloads }}</td>
+  </tr>
+</table>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+
+<h1>{{ page_title|title}}</h1>
+
+{% if torrent_list %}
+<table class="table table-bordered table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Added By</th>
+    <th>Magnet Link</th>
+    <th>Seeders</th>
+    <th>Leechers</th>
+    <th>Downloads</th>
+  </tr>
+  {% for torrent in torrent_list %}
+  <tr>
+    <td><a href="{% url 'torrent' pk=torrent.pk %}">{{ torrent.title }}</td>
+    <td>{{ torrent.user.username }}</td>
+    <td><a class="btn btn-success btn-mini" href="{{ torrent.magnet_link }}">Download</a></td>
+    <td>{{ torrent.get_info.seeders }}</td>
+    <td>{{ torrent.get_info.leechers }}</td>
+    <td>{{ torrent.get_info.downloads }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>There are no torrents yet.</p>
+{% endif %}
+
+{% endblock %}

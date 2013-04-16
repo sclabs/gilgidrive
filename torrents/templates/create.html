@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}shk - create exchange contract: step 2{% endblock %}
+
+{% block content %}
+
+<h1>Create Exchange Contract</h1>
+
+  {% if form.errors %}
+    <p>
+      Please correct the error{{ form.errors|pluralize }} below.
+    </p>
+  {% endif %}
+
+  <form action="" method="post">{% csrf_token %}
+    {{ form.non_field_errors }}
+    <p>I want to offer</p>
+    {% for field in form %}
+      {% if "Send" in field.label %}
+        {% if "qty" in field.label %}<p>{% endif %}
+        {{ field.errors }} {{ field }}
+        {% if sendcomma %}
+          {%if forloop.counter != nocomma %}{% cycle " " ", "%}{% endif %}
+        {% endif %}
+        {% if forloop.counter == and1 %} and{% endif %}
+        {% if "type" in field.label %}</p>{% endif %}
+      {% endif%}
+    {% endfor %}
+    <div class="btn-group" style="padding-bottom: 10px;">
+      <a class="btn btn-success" title="Offer more types" href="{% url create addsend receive %}"><i class="icon-plus"></i></a>
+      {% if send == 1 %}
+      <a class="btn btn-danger disabled" href=""><i class="icon-minus"></i></a>
+      {% else %}
+      <a class="btn btn-danger" title="Offer fewer types" href="{% url create removesend receive %}"><i class="icon-minus"></i></a>
+      {% endif %}
+    </div>
+    <p>in exchange for</p>
+    {% for field in form %}
+      {% if "Receive" in field.label %}
+        {% if "qty" in field.label %}<p>{% endif %}
+        {{ field.errors }} {{ field }}
+        {% if receivecomma %}
+          {% if not forloop.last %}{% cycle " " ", "%}{% endif %}
+        {% endif %}
+        {% if forloop.revcounter == 3 %} and{% endif %}
+        {% if forloop.last %}.{% endif %}
+        {% if "type" in field.label %}</p>{% endif %}
+      {% endif%}
+    {% endfor %}
+    <div class="btn-group" style="padding-bottom: 10px;">
+      <a class="btn btn-success" title="Receive more types" href="{% url create send addreceive %}"><i class="icon-plus"></i></a>
+      {% if receive == 1 %}
+      <a class="btn btn-danger disabled" href=""><i class="icon-minus"></i></a>
+      {% else %}
+      <a class="btn btn-danger" title="Receive fewer types" href="{% url create send removereceive %}"><i class="icon-minus"></i></a>
+      {% endif %}
+    </div>
+    <input class="btn btn-primary" type="submit" value="Create">
+  </form>
+{% endblock %}
