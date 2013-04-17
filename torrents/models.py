@@ -33,7 +33,7 @@ class Torrent(models.Model):
         response = urllib.urlopen(get_scrape_url(get_info_hash(self.magnet_link)))
         match = re.match( r'd5.*completei(.*)e10:downloadedi(.*)e10:incompletei(.*)eeee', response.read(), re.M|re.I)
         if match:
-            return {'seeders': match.group(1), 'leechers': match.group(2), 'downloads': match.group(3)}
+            return {'seeders': match.group(1), 'leechers': match.group(3), 'downloads': match.group(2)}
         return {'seeders': -1, 'leechers': -1, 'downloads': -1}
 
     def get_absolute_url(self):
