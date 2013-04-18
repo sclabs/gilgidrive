@@ -1,0 +1,135 @@
+[
+{
+    "fields": {
+        "name": "Audio"
+    },
+    "model": "drive.category",
+    "pk": 1
+},
+{
+    "fields": {
+        "name": "Video"
+    },
+    "model": "drive.category",
+    "pk": 2
+},
+{
+    "fields": {
+        "name": "Applications"
+    },
+    "model": "drive.category",
+    "pk": 3
+},
+{
+    "fields": {
+        "name": "Games"
+    },
+    "model": "drive.category",
+    "pk": 4
+},
+{
+    "fields": {
+        "name": "Other"
+    },
+    "model": "drive.category",
+    "pk": 5
+},
+{
+    "fields": {
+        "magnet_link": "magnet:?xt=urn:btih:2D82326F6688A8C3C5936C16B362120811B1A9A5&dn=Jai%20Paul&tr=udp%3a%2f%2ftracker.gilgi.org%3a6969%2fannounce",
+        "title": "Jai Paul - Jai Paul (2013) (LEAK)",
+        "category": 1,
+        "added": "2013-04-16T17:04:43.136Z",
+        "user": [
+            "manlytomb"
+        ],
+        "description": "Jai Paul's leaked 2013 album release. Needs better mastering. Listen at own risk."
+    },
+    "model": "drive.file",
+    "pk": 1
+},
+{
+    "fields": {
+        "magnet_link": "magnet:?xt=urn:btih:6F7C68AB496C517B3DCF006B6A30EF77CF4C6AFF&dn=Enough%20Thunder&tr=udp%3a%2f%2ftracker.gilgi.org%3a6969%2fannounce",
+        "title": "James Blake - Enough Thunder (2011) (EP)",
+        "category": 1,
+        "added": "2013-04-16T17:13:25.252Z",
+        "user": [
+            "manlytomb"
+        ],
+        "description": "Post-dubstep soul singer-songwriter EP following up a really cool first album."
+    },
+    "model": "drive.file",
+    "pk": 2
+},
+{
+    "fields": {
+        "magnet_link": "magnet:?xt=urn:btih:2A8B94111ED9FFD19BFF0AC2D8E0B3C0BAC62A86&dn=Torchlight%20II.iso&tr=udp%3a%2f%2ftracker.gilgi.org%3a6969%2fannounce",
+        "title": "Torchlight II",
+        "category": 4,
+        "added": "2013-04-17T02:37:47.513Z",
+        "user": [
+            "DrKwint"
+        ],
+        "description": "Game of the same name on Steam. If you want to play with friends, use the LAN feature with a VLAN. Good game."
+    },
+    "model": "drive.file",
+    "pk": 3
+},
+{
+    "fields": {
+        "magnet_link": "magnet:?xt=urn:btih:294EC5558BCBC9F5D5D83415BE71A036B5B26D2C&dn=SupCom&tr=udp%3a%2f%2ftracker.gilgi.org%3a6969%2fannounce",
+        "title": "Supreme Commander",
+        "category": 4,
+        "added": "2013-04-17T23:35:44.210Z",
+        "user": [
+            "gilgi"
+        ],
+        "description": "LAN RTS classic."
+    },
+    "model": "drive.file",
+    "pk": 4
+},
+{
+    "fields": {
+        "magnet_link": "magnet:?xt=urn:btih:37CA15C56082640A4723878D04690F5926180AF7&dn=Forged%20Alliance&tr=udp%3a%2f%2ftracker.gilgi.org%3a6969%2fannounce",
+        "title": "Supreme Commander: Forged Alliance",
+        "category": 4,
+        "added": "2013-04-17T23:53:22.424Z",
+        "user": [
+            "gilgi"
+        ],
+        "description": "Standalone expansion to the original Supreme Commander. The de facto standard LAN RTS."
+    },
+    "model": "drive.file",
+    "pk": 5
+},
+{
+    "fields": {
+        "magnet_link": "magnet:?xt=urn:btih:7FF3CEF4F919CC0DFE018676E2BB860B6BE4E67A&dn=Maple%2016%20%5b64%20bit%5d%5bWindows%5d%5bNimRoddos%5d&tr=udp%3a%2f%2ftracker.gilgi.org%3a6969%2fannounce",
+        "title": "Maple 16 (WIN) (x64)",
+        "category": 3,
+        "added": "2013-04-18T08:55:40.320Z",
+        "user": [
+            "manlytomb"
+        ],
+        "description": "THE MOST USEFUL SOFTWARE CONCEIVABLE"
+    },
+    "model": "drive.file",
+    "pk": 6
+},
+{
+    "fields": {
+        "magnet_link": "magnet:?xt=urn:btih:F0F612FAD1235A9298A619AA8960FE834CD5F9DC&dn=Tritz%20Financial%20Suite%201.0.zip&tr=udp%3a%2f%2ftracker.gilgi.org%3a6969%2fannounce",
+        "title": "Tritz Financial Suite 1.0",
+        "category": 3,
+        "added": "2013-04-18T11:03:50.233Z",
+        "user": [
+            "manlytomb"
+        ],
+        "description": "A complete, powerful set of desktop tools for managing your personal finances. Prefer direct download? https://dl.dropboxusercontent.com/u/15442312/Tritz%20Financial%20Suite%201.0.zip"
+    },
+    "model": "drive.file",
+    "pk": 7
+}
+]
