@@ -30,7 +30,7 @@ class Torrent(models.Model):
     magnet_link = models.CharField(max_length=256, validators=[magnet_validator])
 
     class Meta:
-        ordering = ['added']
+        ordering = ['-added']
     
     def get_info(self):
         response = urllib.urlopen(get_scrape_url(get_info_hash(self.magnet_link)))
