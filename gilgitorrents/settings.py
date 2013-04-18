@@ -2,7 +2,7 @@
 
 import os
 
-HEROKU = False
+HEROKU = True
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
