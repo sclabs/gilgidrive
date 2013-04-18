@@ -26,9 +26,9 @@
       <td>{{ torrent.user.username }}</td>
       <td>{{ torrent.added|date:"Y-m-d H:i:s" }}</td>
       <td><a class="btn btn-success btn-mini" href="{{ torrent.magnet_link }}">Download</a></td>
-      <td>{{ torrent.get_info.seeders }}</td>
-      <td>{{ torrent.get_info.leechers }}</td>
-      <td>{{ torrent.get_info.downloads }}</td>
+      <td>{{ torrent.info.seeders }}</td>
+      <td>{{ torrent.info.leechers }}</td>
+      <td>{{ torrent.info.downloads }}</td>
     </tr>
     {% endfor %}
     </tbody>

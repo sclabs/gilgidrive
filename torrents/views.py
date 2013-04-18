@@ -22,7 +22,10 @@ class AllView(ListView):
 
 class RecentView(ListView):
     def get_queryset(self):
-        return Torrent.objects.all()[:20]
+        torrents = Torrent.objects.all()[:20]
+        for torrent in torrents:
+            torrent.info = torrent.get_info()
+        return torrents
 
     def get_context_data(self, **kwargs):
         context = super(RecentView, self).get_context_data(**kwargs)
@@ -34,7 +37,10 @@ class RecentView(ListView):
 class CategoryView(ListView):
     def get_queryset(self):
         category = get_object_or_404(Category, name=self.kwargs['name'])
-        return Torrent.objects.filter(category=category)
+        torrents = Torrent.objects.filter(category=category)
+        for torrent in torrents:
+            torrent.info = torrent.get_info()
+        return torrents
 
     def get_context_data(self, **kwargs):
         context = super(CategoryView, self).get_context_data(**kwargs)
@@ -84,8 +90,8 @@ class TorrentView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(TorrentView, self).get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
-        torrent = get_object_or_404(Torrent, pk=self.kwargs['pk'])
-        if torrent.user == self.request.user:
+        self.object.info = self.object.get_info()
+        if self.object.user == self.request.user:
             context['owned'] = True
         return context
 
