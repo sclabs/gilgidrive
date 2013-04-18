@@ -36,8 +36,14 @@ class Torrent(models.Model):
         response = urllib.urlopen(get_scrape_url(get_info_hash(self.magnet_link)))
         match = re.match( r'.*completei(.*)e10:downloadedi(.*)e10:incompletei(.*)eeee', response.read(), re.S|re.M|re.I)
         if match:
+            print 'match succeeded'
+            response = urllib.urlopen(get_scrape_url(get_info_hash(self.magnet_link)))
+            print response.read()
             return {'seeders': match.group(1), 'leechers': match.group(3), 'downloads': match.group(2)}
-        return {'seeders': -1, 'leechers': -1, 'downloads': -1}
+        print 'match failed'
+        response = urllib.urlopen(get_scrape_url(get_info_hash(self.magnet_link)))
+        print response.read()
+        return {'seeders': 0, 'leechers': 0, 'downloads': 0}
 
     def get_absolute_url(self):
         return reverse('torrent', kwargs={'pk': self.pk})
