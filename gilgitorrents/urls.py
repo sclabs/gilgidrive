@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from .settings import DEBUG, MEDIA_ROOT, STATIC_ROOT
+from .settings import FILESERVE_DEBUG, MEDIA_ROOT, STATIC_ROOT
 
 admin.autodiscover()
 
@@ -33,7 +33,7 @@ urlpatterns = patterns('',
 # DEV ONLY!!!!!!!!!!
 #
 # this magic code snippet allows the dev server to serve anything in media/ and static/
-if DEBUG:
+if FILESERVE_DEBUG:
     urlpatterns += patterns('',
         #url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': MEDIA_ROOT,}),
         #url(r'^static/admin/(?P<path>.*)$', 'django.views.static.serve', {'document_root': STATIC_ROOT + '/admin/',}),
