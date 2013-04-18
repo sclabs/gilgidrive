@@ -3,7 +3,7 @@
 import os
 
 HEROKU = True
-DEBUG = not HEROKU
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
