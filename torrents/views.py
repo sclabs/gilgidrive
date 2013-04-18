@@ -22,7 +22,7 @@ class AllView(ListView):
 
 class RecentView(ListView):
     def get_queryset(self):
-        return Torrent.objects.order_by('added')[:20]
+        return Torrent.objects.all()[:20]
 
     def get_context_data(self, **kwargs):
         context = super(RecentView, self).get_context_data(**kwargs)
