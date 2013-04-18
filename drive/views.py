@@ -10,7 +10,10 @@ from .forms import FileForm
 
 class AllView(ListView):
     def get_queryset(self):
-        return File.objects.all()
+        files = File.objects.all()
+        for file in files:
+            file.info = file.get_info()
+        return files
         
     def get_context_data(self, **kwargs):
         context = super(AllView, self).get_context_data(**kwargs)
