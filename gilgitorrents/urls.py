@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from .settings import FILESERVE_DEBUG, MEDIA_ROOT, STATIC_ROOT
+from .settings import DEBUG, MEDIA_ROOT, STATIC_ROOT
 
 admin.autodiscover()
 
