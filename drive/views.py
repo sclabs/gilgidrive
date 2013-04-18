@@ -60,6 +60,8 @@ class AddView(CreateView):
         context = super(AddView, self).get_context_data(**kwargs)
         context['add_active'] = 'active'
         context['categories'] = Category.objects.all()
+        context['add_or_edit'] = 'add'
+        context['add_or_save'] = 'add'
         return context
         
     def form_valid(self, form):
@@ -71,7 +73,7 @@ class AddView(CreateView):
 class EditView(UpdateView):
     form_class = FileForm
     model = File
-    template_name = 'drive/file_update.html'
+    template_name = 'drive/file_form.html'
     
     def get(self, request, *args, **kwargs):
         file = get_object_or_404(File, pk=self.kwargs['pk'])
@@ -82,6 +84,8 @@ class EditView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super(EditView, self).get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
+        context['add_or_edit'] = 'edit'
+        context['add_or_save'] = 'save'
         return context
 
 class FileView(DetailView):

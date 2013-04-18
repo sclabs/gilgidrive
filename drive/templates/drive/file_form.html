@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 
-{% block title %}Add File{% endblock %}
+{% block title %}{{ add_or_edit|title }} File{% endblock %}
 
 {% block content %}
 
-<h1>Add File</h1>
+<h1>{{ add_or_edit|title }} File</h1>
 
 <form action="" method="post">{% csrf_token %}
     {{ form.non_field_errors }}
@@ -32,7 +32,7 @@
         <script type="text/javascript">
             document.getElementById("db-chooser").addEventListener("DbxChooserSuccess",
                 function(e) {
-                    alert("Here's the chosen file: " + e.files[0].link)
+                    document.getElementById("id_direct_link").value = e.files[0].link;
                 }, false);
         </script>
         </span>
@@ -42,7 +42,7 @@
         <label for="id_magnet_link">Magnet link:</label>
         {{ form.magnet_link }}
     </div>
-    <input class="btn btn-primary" type="submit" value="Add File" />
+    <input class="btn btn-primary" type="submit" value="{{ add_or_save|title }} File" />
 </form>
 
 {% endblock %}
