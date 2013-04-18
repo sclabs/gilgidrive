@@ -2,8 +2,8 @@
 
 import os
 
-HEROKU = False
-DEBUG = True
+HEROKU = True
+DEBUG = not HEROKU
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
