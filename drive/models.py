@@ -28,9 +28,8 @@ class File(models.Model):
     title = models.CharField(max_length=128)
     description = models.TextField()
     added = models.DateTimeField(auto_now_add=True)
-    #magnet_link = models.CharField(max_length=256, validators=[magnet_validator], blank=True, null=True)
-    magnet_link = models.CharField(max_length=256, validators=[magnet_validator])
-    #direct_link = models.CharField(max_length=256, blank=True, null=True)
+    magnet_link = models.CharField(max_length=256, validators=[magnet_validator], blank=True, null=True)
+    direct_link = models.CharField(max_length=256, blank=True, null=True)
 
     class Meta:
         ordering = ['-added']
