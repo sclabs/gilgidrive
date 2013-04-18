@@ -33,7 +33,7 @@ urlpatterns = patterns('',
 # DEV ONLY!!!!!!!!!!
 #
 # this magic code snippet allows the dev server to serve anything in media/ and static/
-if FILESERVE_DEBUG:
+if DEBUG:
     urlpatterns += patterns('',
         #url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': MEDIA_ROOT,}),
         #url(r'^static/admin/(?P<path>.*)$', 'django.views.static.serve', {'document_root': STATIC_ROOT + '/admin/',}),
