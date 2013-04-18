@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}{{ object.title|lower }}{% endblock %}
+{% block title %}{{ object.title|title }}{% endblock %}
 
 {% block content %}
 
@@ -12,7 +12,14 @@
 {% endif %}
 </h1>
 
-<a class="btn btn-success" href="{{ object.magnet_link }}">Download</a>
+<div class="btn-group">
+  {% if object.magnet_link %}
+  <a class="btn btn-success" href="{{ object.magnet_link }}">Magnet Link</a>
+  {% endif %}
+  {% if object.direct_link %}
+  <a class="btn btn-success" href="{{ object.direct_link }}">Direct Link</a>
+  {% endif %}
+</div>
 
 <p class="description">{{ object.description }}</p>
 

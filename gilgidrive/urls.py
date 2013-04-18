@@ -5,14 +5,14 @@ from .settings import DEBUG, MEDIA_ROOT, STATIC_ROOT
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # torrents app
-    url(r'^', include('torrents.urls')),
+    # drive app
+    url(r'^', include('drive.urls')),
 
     # auth-related URLs
     url(r'^login/$', 'django.contrib.auth.views.login', name='login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/loggedout/'}, name='logout'),
     url(r'^switchuser/$', 'django.contrib.auth.views.logout_then_login', name='switchuser'),
-    url(r'^loggedout/$', 'gilgitorrents.views.loggedout'),
+    url(r'^loggedout/$', 'gilgidrive.views.loggedout'),
     url(r'^changepassword/$', 'django.contrib.auth.views.password_change', name='changepassword'),
     url(r'^passwordchanged/$', 'django.contrib.auth.views.password_change_done'),
     

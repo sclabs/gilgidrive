@@ -1,17 +1,25 @@
+/* pull dropbox button to the same line as textbox
+-------------------------------------------------- */
+.dropbox-chooser {
+    display: inline-block;
+    margin-bottom: -4px;
+}
+
+
 /* arrows for sortable tables
 -------------------------------------------------- */
 table.tablesorter thead tr .header {
-	background-image: url(/static/img/bg.gif);
-	background-repeat: no-repeat;
-	background-position: center right;
-	cursor: pointer;
+    background-image: url(/static/img/bg.gif);
+    background-repeat: no-repeat;
+    background-position: center right;
+    cursor: pointer;
 }
 
 table.tablesorter thead tr .headerSortUp {
-	background-image: url(/static/img/asc.gif);
+    background-image: url(/static/img/asc.gif);
 }
 table.tablesorter thead tr .headerSortDown {
-	background-image: url(/static/img/desc.gif);
+    background-image: url(/static/img/desc.gif);
 }
 
 /* custom padding on description p

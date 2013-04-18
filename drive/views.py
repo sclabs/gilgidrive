@@ -5,16 +5,16 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.shortcuts import get_object_or_404
 from django.http import Http404, HttpResponseRedirect
 
-from .models import Category, Torrent
-from .forms import AddForm, EditForm
+from .models import Category, File
+from .forms import FileForm
 
 class AllView(ListView):
     def get_queryset(self):
-        return Torrent.objects.all()
+        return File.objects.all()
         
     def get_context_data(self, **kwargs):
         context = super(AllView, self).get_context_data(**kwargs)
-        context['page_title'] = 'all torrents'
+        context['page_title'] = 'all files'
         context['all_active'] = 'active'
         context['categories_active'] = 'active'
         context['categories'] = Category.objects.all()
@@ -22,14 +22,14 @@ class AllView(ListView):
 
 class RecentView(ListView):
     def get_queryset(self):
-        torrents = Torrent.objects.all()[:20]
-        for torrent in torrents:
-            torrent.info = torrent.get_info()
-        return torrents
+        files = File.objects.all()[:20]
+        for file in files:
+            file.info = file.get_info()
+        return files
 
     def get_context_data(self, **kwargs):
         context = super(RecentView, self).get_context_data(**kwargs)
-        context['page_title'] = 'recent torrents'
+        context['page_title'] = 'recent files'
         context['recent_active'] = 'active'
         context['categories'] = Category.objects.all()
         return context
@@ -37,10 +37,10 @@ class RecentView(ListView):
 class CategoryView(ListView):
     def get_queryset(self):
         category = get_object_or_404(Category, name=self.kwargs['name'])
-        torrents = Torrent.objects.filter(category=category)
-        for torrent in torrents:
-            torrent.info = torrent.get_info()
-        return torrents
+        files = File.objects.filter(category=category)
+        for file in files:
+            file.info = file.get_info()
+        return files
 
     def get_context_data(self, **kwargs):
         context = super(CategoryView, self).get_context_data(**kwargs)
@@ -53,8 +53,8 @@ class CategoryView(ListView):
         return context
 
 class AddView(CreateView):
-    form_class = AddForm
-    template_name = 'torrents/torrent_form.html'
+    form_class = FileForm
+    template_name = 'drive/file_form.html'
     
     def get_context_data(self, **kwargs):
         context = super(AddView, self).get_context_data(**kwargs)
@@ -69,13 +69,13 @@ class AddView(CreateView):
         return HttpResponseRedirect(self.get_success_url())
 
 class EditView(UpdateView):
-    form_class = EditForm
-    model = Torrent
-    template_name = 'torrents/torrent_update.html'
+    form_class = FileForm
+    model = File
+    template_name = 'drive/file_update.html'
     
     def get(self, request, *args, **kwargs):
-        torrent = get_object_or_404(Torrent, pk=self.kwargs['pk'])
-        if torrent.user != self.request.user:
+        file = get_object_or_404(File, pk=self.kwargs['pk'])
+        if file.user != self.request.user:
             raise Http404
         return super(EditView, self).get(request, *args, **kwargs)
         
@@ -84,11 +84,11 @@ class EditView(UpdateView):
         context['categories'] = Category.objects.all()
         return context
 
-class TorrentView(DetailView):
-    model = Torrent
+class FileView(DetailView):
+    model = File
     
     def get_context_data(self, **kwargs):
-        context = super(TorrentView, self).get_context_data(**kwargs)
+        context = super(FileView, self).get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
         self.object.info = self.object.get_info()
         if self.object.user == self.request.user:

@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Add File{% endblock %}
+
+{% block content %}
+
+<h1>Add File</h1>
+
+<form action="" method="post">{% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="fieldWrapper">
+        {{ form.title.errors }}
+        <label for="id_title">Title:</label>
+        {{ form.title }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.category.errors }}
+        <label for="id_message">Category:</label>
+        {{ form.category }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.description.errors }}
+        <label for="id_description">Description:</label>
+        {{ form.description }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.direct_link.errors }}
+        <label for="id_direct_link">Direct link:</label>
+        <span>
+        {{ form.direct_link }}
+        <input type="dropbox-chooser" name="selected-file" id="db-chooser"/>
+        <script type="text/javascript">
+            document.getElementById("db-chooser").addEventListener("DbxChooserSuccess",
+                function(e) {
+                    alert("Here's the chosen file: " + e.files[0].link)
+                }, false);
+        </script>
+        </span>
+    </div>
+    <div class="fieldWrapper">
+        {{ form.magnet_link.errors }}
+        <label for="id_magnet_link">Magnet link:</label>
+        {{ form.magnet_link }}
+    </div>
+    <input class="btn btn-primary" type="submit" value="Add File" />
+</form>
+
+{% endblock %}

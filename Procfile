@@ -1,1 +1,1 @@
-web: gunicorn gilgitorrents.wsgi
+web: gunicorn gilgidrive.wsgi

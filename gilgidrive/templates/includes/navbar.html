@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <a class="brand" href="{% url 'recent' %}">gilgitorrent</a>
+      <a class="brand" href="{% url 'recent' %}">Gilgi Drive</a>
       <div class="nav-collapse">
         <ul class="nav">
           <li class="{{ recent_active }}"><a href="{% url 'recent' %}">Recent</a></li>
@@ -19,10 +19,10 @@
               <li class="{{ category.active }}"><a href="{% url 'category' name=category.name %}">{{ category.name }}</a></li>
               {% endfor %}
               <li class="divider"></li>
-              <li class="{{ all_active }}"><a href="{% url 'all' %}">All Torrents</a></li>
+              <li class="{{ all_active }}"><a href="{% url 'all' %}">All Files</a></li>
             </ul>
           </li>
-          <li class="{{ add_active }}"><a href="{% url 'add' %}">Add Torrent</a></li>
+          <li class="{{ add_active }}"><a href="{% url 'add' %}">Add File</a></li>
           <li class="divider-vertical"></li>
           <li class="{{ changelog_active }}"><a href="{% url 'changelog' %}">Changelog</a></li>
         </ul>

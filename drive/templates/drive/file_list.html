@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page_title|title }}{% endblock %}
+
+{% block content %}
+
+<h1>{{ page_title|title}}</h1>
+
+{% if file_list %}
+<table id="filetable" class="table table-bordered table-striped tablesorter">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Added By</th>
+      <th>Added</th>
+      <th>Direct Link</th>
+      <th>Magnet Link</th>
+      <th>Seeders</th>
+      <th>Leechers</th>
+      <th>Downloads</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for file in file_list %}
+    <tr>
+      <td><a href="{% url 'file' pk=torrent.pk %}">{{ file.title }}</td>
+      <td>{{ file.user.username }}</td>
+      <td>{{ file.added|date:"Y-m-d H:i:s" }}</td>
+      <td>
+        {% if object.magnet_link %}
+        <a class="btn btn-success btn-mini" href="{{ file.direct_link }}">Download</a>
+        {% else %}
+        <a class="btn btn-danger btn-mini disabled" href="#">Unavailable</a>
+        {% endif %}
+      </td>
+      <td>
+        {% if object.magnet_link %}
+        <a class="btn btn-success btn-mini" href="{{ file.magnet_link }}">Download</a>
+        {% else %}
+        <a class="btn btn-danger btn-mini disabled" href="#">Unavailable</a>
+        {% endif %}
+      </td>
+      <td>{{ file.info.seeders }}</td>
+      <td>{{ file.info.leechers }}</td>
+      <td>{{ file.info.downloads }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>There are no files yet.</p>
+{% endif %}
+
+<script>
+$(document).ready(function() 
+    { 
+        $("#filetable").tablesorter( {sortList: [[2,1]]} ); 
+    } 
+); 
+</script>
+
+{% endblock %}

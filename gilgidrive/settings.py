@@ -1,8 +1,8 @@
-# Django settings for gilgitorrents project.
+# Django settings for gilgidrive project.
 
 import os
 
-HEROKU = True
+HEROKU = False
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -23,7 +23,7 @@ DATABASES = {
     }
 }
 
-SITE_URL = 'http://torrent.gilgi.org/'
+SITE_URL = 'http://drive.gilgi.org/'
 SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
 
 # Local time zone for this installation. Choices can be found here:
@@ -112,10 +112,10 @@ MIDDLEWARE_CLASSES = (
      'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'gilgitorrents.urls'
+ROOT_URLCONF = 'gilgidrive.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'gilgitorrents.wsgi.application'
+WSGI_APPLICATION = 'gilgidrive.wsgi.application'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -137,7 +137,7 @@ INSTALLED_APPS = (
      'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    'torrents',
+    'drive',
     'south',
 )
 

@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 
-{% block title %}add torrent{% endblock %}
+{% block title %}Edit File{% endblock %}
 
 {% block content %}
 
-<h1>Add Torrent</h1>
+<h1>Edit File</h1>
 
 <form action="" method="post">{% csrf_token %}
 {{ form.as_p }}
-<input class="btn btn-primary" type="submit" value="Add Torrent" />
+<input class="btn btn-primary" type="submit" value="Save Changes" />
 </form>
 
 {% endblock %}
