@@ -28,7 +28,6 @@ class File(models.Model):
     title = models.CharField(max_length=128)
     description = models.TextField()
     added = models.DateTimeField(auto_now_add=True)
-    #added = models.DateTimeField()
     #magnet_link = models.CharField(max_length=256, validators=[magnet_validator], blank=True, null=True)
     magnet_link = models.CharField(max_length=256, validators=[magnet_validator])
     #direct_link = models.CharField(max_length=256, blank=True, null=True)
@@ -42,13 +41,13 @@ class File(models.Model):
         response = urllib.urlopen(get_scrape_url(get_info_hash(self.magnet_link)))
         match = re.match( r'.*completei(.*)e10:downloadedi(.*)e10:incompletei(.*)eeee', response.read(), re.S|re.M|re.I)
         if match:
-            print 'match succeeded'
-            response = urllib.urlopen(get_scrape_url(get_info_hash(self.magnet_link)))
-            print response.read()
+            #print 'match succeeded'
+            #response = urllib.urlopen(get_scrape_url(get_info_hash(self.magnet_link)))
+            #print response.read()
             return {'seeders': match.group(1), 'leechers': match.group(3), 'downloads': match.group(2)}
-        print 'match failed'
-        response = urllib.urlopen(get_scrape_url(get_info_hash(self.magnet_link)))
-        print response.read()
+        #print 'match failed'
+        #response = urllib.urlopen(get_scrape_url(get_info_hash(self.magnet_link)))
+        #print response.read()
         return {'seeders': 0, 'leechers': 0, 'downloads': 0}
 
     def get_absolute_url(self):
