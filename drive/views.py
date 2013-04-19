@@ -93,16 +93,29 @@ class AddView(CreateView):
     template_name = 'drive/file_form.html'
     
     def get_context_data(self, **kwargs):
+        print 'getting context'
         context = super(AddView, self).get_context_data(**kwargs)
         context = dict(context.items() + common_context(self).items())
         context['add_active'] = 'active'
         context['add_or_edit'] = 'add'
         context['add_or_save'] = 'add'
         return context
-        
+    
+    #def post(self, request, *args, **kwargs):
+    #    super(AddView, self).post(request, *args, **kwargs)
+    #    print 'poast'
+    #    form = request.form
+    #    context = self.get_context_data(form=form)
+    #    return HttpResponseRedirect(self.get_success_url())
+    
+    def form_invalid(self, form):
+        print 'form invalid'
+        return super(AddView, self).form_invalid(form)
+    
     def form_valid(self, form):
         self.object = form.save(commit=False)
         self.object.user = self.request.user
+        print 'saving'
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
 

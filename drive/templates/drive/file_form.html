@@ -8,6 +8,7 @@
 
 <form action="" method="post">{% csrf_token %}
     {{ form.non_field_errors }}
+    {{ form.errors }}
     <div class="fieldWrapper">
         {{ form.title.errors }}
         <label for="id_title">Title:</label>

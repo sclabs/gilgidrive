@@ -16,7 +16,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Categories <b class="caret"></b></a>
             <ul class="dropdown-menu">
               {% for category in categories %}
-              <li class="{{ category.active }}"><a href="{% url 'category' name=category.name %}">{{ category.name }}</a></li>
+              <li class="{{ category.active }}"><a href="{% url 'category' name=category.name %}">{{ category.name|title }}</a></li>
               {% endfor %}
               <li class="divider"></li>
               <li class="{{ all_active }}"><a href="{% url 'all' %}">All Files</a></li>

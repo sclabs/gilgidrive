@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.urlresolvers import reverse
 
+from .random_primary import RandomPrimaryIdModel
+
 class Category(models.Model):
     name = models.CharField(max_length=32)
 
@@ -22,7 +24,7 @@ def get_info_hash(magnet_link):
 def get_scrape_url(info_hash):
     return 'http://tracker.gilgi.org:6969/scrape?info_hash=' + urllib.quote_plus(binascii.a2b_hex(info_hash))
 
-class File(models.Model):
+class File(RandomPrimaryIdModel):
     user = models.ForeignKey(User)
     category = models.ForeignKey(Category)
     title = models.CharField(max_length=128)
