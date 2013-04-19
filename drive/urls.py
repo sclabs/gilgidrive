@@ -11,4 +11,5 @@ urlpatterns = patterns('drive.views',
     url(r'^file/(?P<pk>\d+)/$', login_required(FileView.as_view()), name='file'),
     url(r'^all/$', login_required(AllView.as_view()), name='all'),
     url(r'^changelog/$', ChangelogView.as_view(), name='changelog'),
+    url(r'^search/$', login_required(SearchView.as_view()), name='search'),
 )

@@ -6,7 +6,16 @@ from django.shortcuts import get_object_or_404
 from django.http import Http404, HttpResponseRedirect
 
 from .models import Category, File
-from .forms import FileForm
+from .forms import FileForm, SearchForm
+from .search import normalize_query, get_query
+
+# context needed by all views (e.g., because navbar)
+def common_context(view_instance):
+    context = {}
+    # needed for dropdown
+    context['categories'] = Category.objects.all()
+    context['search_form'] = SearchForm()
+    return context
 
 class AllView(ListView):
     def get_queryset(self):
@@ -17,10 +26,10 @@ class AllView(ListView):
         
     def get_context_data(self, **kwargs):
         context = super(AllView, self).get_context_data(**kwargs)
+        context = dict(context.items() + common_context(self).items())
         context['page_title'] = 'all files'
         context['all_active'] = 'active'
         context['categories_active'] = 'active'
-        context['categories'] = Category.objects.all()
         return context
 
 class RecentView(ListView):
@@ -32,9 +41,9 @@ class RecentView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(RecentView, self).get_context_data(**kwargs)
+        context = dict(context.items() + common_context(self).items())
         context['page_title'] = 'recent files'
         context['recent_active'] = 'active'
-        context['categories'] = Category.objects.all()
         return context
 
 class CategoryView(ListView):
@@ -47,22 +56,44 @@ class CategoryView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(CategoryView, self).get_context_data(**kwargs)
+        context = dict(context.items() + common_context(self).items())
         context['page_title'] = 'category: ' + self.kwargs['name']
         context['categories_active'] = 'active'
-        context['categories'] = Category.objects.all()
         for category in context['categories']:
             if category.name == self.kwargs['name']:
                 category.active = 'active'
         return context
 
+class SearchView(ListView):
+    template_name = 'drive/file_list.html'
+
+    def get_queryset(self):
+        query_string = ''
+        files = None
+        if ('query' in self.request.GET) and self.request.GET['query'].strip():
+            query_string = self.request.GET['query']
+            entry_query = get_query(query_string, ['title', 'description',])
+            files = File.objects.filter(entry_query)
+        if files:
+            for file in files:
+                file.info = file.get_info()
+        return files
+        
+    def get_context_data(self, **kwargs):
+        context = super(SearchView, self).get_context_data(**kwargs)
+        context = dict(context.items() + common_context(self).items())
+        context['page_title'] = 'Search Results'
+        context['search'] = True
+        return context
+        
 class AddView(CreateView):
     form_class = FileForm
     template_name = 'drive/file_form.html'
     
     def get_context_data(self, **kwargs):
         context = super(AddView, self).get_context_data(**kwargs)
+        context = dict(context.items() + common_context(self).items())
         context['add_active'] = 'active'
-        context['categories'] = Category.objects.all()
         context['add_or_edit'] = 'add'
         context['add_or_save'] = 'add'
         return context
@@ -86,7 +117,7 @@ class EditView(UpdateView):
         
     def get_context_data(self, **kwargs):
         context = super(EditView, self).get_context_data(**kwargs)
-        context['categories'] = Category.objects.all()
+        context = dict(context.items() + common_context(self).items())
         context['add_or_edit'] = 'edit'
         context['add_or_save'] = 'save'
         return context
@@ -96,7 +127,7 @@ class FileView(DetailView):
     
     def get_context_data(self, **kwargs):
         context = super(FileView, self).get_context_data(**kwargs)
-        context['categories'] = Category.objects.all()
+        context = dict(context.items() + common_context(self).items())
         self.object.info = self.object.get_info()
         if self.object.user == self.request.user:
             context['owned'] = True
@@ -107,7 +138,6 @@ class ChangelogView(TemplateView):
     
     def get_context_data(self, **kwargs):
         context = super(ChangelogView, self).get_context_data(**kwargs)
-        if self.request.user.is_authenticated():
-            context['categories'] = Category.objects.all()
+        context = dict(context.items() + common_context(self).items())
         context['changelog_active'] = 'active'
         return context

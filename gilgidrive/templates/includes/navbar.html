@@ -41,6 +41,9 @@
           <li class="pull-right {{ account_active }}"><a href="{% url 'login' %}">Login</a></li>
           {% endif %}
         </ul>
+        <form class="navbar-search pull-right" action="{% url 'search' %}" method="get">
+          {{ search_form.query }}
+        </form>
       </div><!-- /.nav-collapse -->
     </div>
   </div><!-- /navbar-inner -->

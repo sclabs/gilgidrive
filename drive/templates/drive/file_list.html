@@ -48,7 +48,11 @@
     </tbody>
 </table>
 {% else %}
+{% if search %}
+<p>No files matching your search query were found.</p>
+{% else %}
 <p>There are no files yet.</p>
+{% endif %}
 {% endif %}
 
 <script>
