@@ -2,8 +2,10 @@ from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import DeleteView as GenericDeleteView
 from django.shortcuts import get_object_or_404
 from django.http import Http404, HttpResponseRedirect
+from django.core.urlresolvers import reverse_lazy
 
 from .models import Category, File
 from .forms import FileForm, SearchForm
@@ -122,6 +124,16 @@ class EditView(UpdateView):
         context['add_or_save'] = 'save'
         return context
 
+class DeleteView(GenericDeleteView):
+    model = File
+    success_url = reverse_lazy('recent')
+    
+    def get(self, request, *args, **kwargs):
+        file = get_object_or_404(File, pk=self.kwargs['pk'])
+        if file.user != self.request.user:
+            raise Http404
+        return super(DeleteView, self).get(request, *args, **kwargs)
+
 class FileView(DetailView):
     model = File
     
@@ -132,7 +144,7 @@ class FileView(DetailView):
         if self.object.user == self.request.user:
             context['owned'] = True
         return context
-
+        
 class ChangelogView(TemplateView):
     template_name = 'changelog.html'
     

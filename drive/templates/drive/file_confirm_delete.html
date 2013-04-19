@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Confirm Delete: {{ object.title|title }}{% endblock %}
+
+{% block content %}
+
+<h1>Confirm Delete: {{ object.title|title }}</h1>
+
+<p>Are you sure you want to delete this file? This action cannot be undone!</p>
+
+<div class="btn-group">
+  <a class="btn btn-primary" href="{% url 'file' pk=object.pk %}">Go Back</a>
+  <form action="" method="post">{% csrf_token %}
+  <input class="btn btn-danger" type="submit" value="Delete File" />
+  </form>
+</div>
+
+{% endblock %}
