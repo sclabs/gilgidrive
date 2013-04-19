@@ -72,8 +72,8 @@ class SearchView(ListView):
         files = None
         if ('query' in self.request.GET) and self.request.GET['query'].strip():
             query_string = self.request.GET['query']
-            entry_query = get_query(query_string, ['title', 'description',])
-            files = File.objects.filter(entry_query)
+            file_query = get_query(query_string, ['title', 'description', 'user__username'],)
+            files = File.objects.filter(file_query)
         if files:
             for file in files:
                 file.info = file.get_info()
