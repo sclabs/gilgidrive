@@ -15,9 +15,12 @@ class Category(models.Model):
 
 def magnet_validator(value):
     if value:
-        if not 'tr=udp%3a%2f%2ftracker.gilgi.org%3a6969%2fannounce' in value:
-            raise ValidationError(u'torrent must use tracker.gilgi.org')
-
+        pieces = value.split('&')
+        for piece in pieces:
+            if 'tr=' in piece:
+                if piece != 'tr=udp%3a%2f%2ftracker.gilgi.org%3a6969%2fannounce':
+                    raise ValidationError(u'torrent must use only udp://tracker.gilgi.org:6969/announce')
+            
 def get_info_hash(magnet_link):
     return magnet_link[20:60]
 
