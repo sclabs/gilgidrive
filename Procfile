@@ -1,1 +1,1 @@
-web: gunicorn gilgidrive.wsgi --logfile=-
+web: gunicorn gilgidrive.wsgi --log-file=-
